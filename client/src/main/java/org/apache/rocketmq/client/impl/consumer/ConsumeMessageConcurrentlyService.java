@@ -337,7 +337,13 @@ public class ConsumeMessageConcurrentlyService implements ConsumeMessageService 
 
         return false;
     }
-
+    /**
+     * 提交延迟消费请求
+     *
+     * @param msgs 消息列表
+     * @param processQueue 消息处理队列
+     * @param messageQueue 消息队列
+     */
     private void submitConsumeRequestLater(//
         final List<MessageExt> msgs, //
         final ProcessQueue processQueue, //
@@ -366,8 +372,17 @@ public class ConsumeMessageConcurrentlyService implements ConsumeMessageService 
     }
 
     class ConsumeRequest implements Runnable {
+        /**
+        * 消费消息列表
+        */
         private final List<MessageExt> msgs;
+        /**
+         * 消息处理队列
+         */
         private final ProcessQueue processQueue;
+        /***
+         * 消息队列
+         */
         private final MessageQueue messageQueue;
 
         public ConsumeRequest(List<MessageExt> msgs, ProcessQueue processQueue, MessageQueue messageQueue) {
