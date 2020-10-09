@@ -70,18 +70,35 @@ public class RemotingCommand {
     }
 
     /**
-
+     * 请求操作码，应答方根据不同的请求码进行不同的业务处理
      */
     private int code;
+    /**
+     * 	请求方实现的语言
+     */
     private LanguageCode language = LanguageCode.JAVA;
+    /***
+     * 	请求方程序的版本
+     */
     private int version = 0;
+    /***
+     * 	相当于reqeustId，在同一个连接上的不同请求标识码，与响应消息中的相对应
+     */
     private int opaque = requestId.getAndIncrement();
+    /***
+     * 区分是普通RPC还是onewayRPC得标志
+     */
     private int flag = 0;
+    /***
+     * 传输自定义文本信息
+     */
     private String remark;
+    /***
+     * 	请求自定义扩展信息
+     */
     private HashMap<String, String> extFields;
     private transient CommandCustomHeader customHeader;
     /**
-
      */
     private SerializeType serializeTypeCurrentRPC = serializeTypeConfigInThisServer;
     /**
